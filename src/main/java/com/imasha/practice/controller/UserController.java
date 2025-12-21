@@ -1,17 +1,17 @@
 package com.imasha.practice.controller;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.imasha.practice.dto.UserDto;
+import com.imasha.practice.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController // Used to create REST APIs that return JSON/text data
 @RequestMapping("api/v1/user") // Base URL
 @CrossOrigin // Allows cross-origin requests (frontend → backend)
+
 public class UserController {
+    @Autowired
+    private  UserService userService;
 
     @GetMapping("/getuser")
     public String getUser() {
@@ -19,8 +19,10 @@ public class UserController {
     }
 
     @PostMapping("/saveuser")
-    public String saveUser() {
-        return "saved";
+    public UserDto saveUser(@RequestBody UserDto userDto) {
+        return userService.saveUser(userDto);
+
+
     }
 
     @PutMapping("/updateuser")
