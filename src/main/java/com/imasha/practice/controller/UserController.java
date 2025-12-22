@@ -5,6 +5,8 @@ import com.imasha.practice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController // Used to create REST APIs that return JSON/text data
 @RequestMapping("api/v1/user") // Base URL
 @CrossOrigin // Allows cross-origin requests (frontend → backend)
@@ -13,9 +15,9 @@ public class UserController {
     @Autowired
     private  UserService userService;
 
-    @GetMapping("/getuser")
-    public String getUser() {
-        return "imasha";
+    @GetMapping("/getusers")
+    public List<UserDto> getUser() {
+        return userService.getAllUsers();
     }
 
     @PostMapping("/saveuser")
