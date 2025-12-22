@@ -5,8 +5,11 @@ import com.imasha.practice.entity.User;
 import com.imasha.practice.repo.UserRepo;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Transactional
 @Service
@@ -19,5 +22,9 @@ public class UserService {
     public UserDto saveUser(UserDto userDto){
         userRepo.save(modelMapper.map(userDto , User.class));
         return userDto;
+    }
+    public List<UserDto> getAllUsers(){
+        List<User>userList=userRepo.findAll();
+        return modelMapper.map(userList,new TypeToken<List<UserDto>>(){}.getType());
     }
 }
