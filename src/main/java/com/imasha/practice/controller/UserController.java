@@ -28,8 +28,8 @@ public class UserController {
     }
 
     @PutMapping("/updateuser")
-    public String updateUser() {
-        return "updated";
+    public UserDto updateUser(@RequestBody UserDto userDto) {
+        return userService.updateUser(userDto);
     }
 
     @DeleteMapping("/deleteuser")
