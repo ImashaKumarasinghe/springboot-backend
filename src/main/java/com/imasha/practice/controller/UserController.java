@@ -39,7 +39,7 @@ public class UserController {
     }
     //SELECT*FROM USER WHERE=getuser by id
     @GetMapping("/getUserByUserId/{userId}")
-    public UserDto getUserByUserId(@PathVariable String userId){
+    public UserDto getUserByUserId(@PathVariable Integer userId){
        return userService.getUserByUserId(userId);
     }
 
